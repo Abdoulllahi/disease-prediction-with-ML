@@ -118,3 +118,11 @@ Patient Education and Engagement: Educating and engaging patients to foster coll
 #### 4. Models Evaluation:
 * Evaluate the models based on metrics such as accuracy, precision, recall, and F1-score.
 * Choose the model(s) that demonstrate the highest predictive performance.
+
+$$ Accuracy = {(Number of Correct Predictions) \over (Total Number of Predictions)}$$
+
+$$Precision = {True Positives \over (True Positives + False Positives)}$$
+
+$$Recall = {True Positives \over (True Positives + False Negatives)}$$
+
+$$ F1-Score = {2 * Precision * Recall \over (Precision + Recall)}
