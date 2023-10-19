@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Disease Prediction</title>
+</head>
+<body>
+    <h1>Disease Prediction</h1>
+
+    <form method="post" action="{{ url_for('index') }}">
+        {% for symptom in symptoms %}
+            <label>
+                {{ symptom }}
+                <input type="checkbox" name="{{ symptom }}" value="yes">
+            </label>
+        {% endfor %}
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <h2>Predicted Disease: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>
