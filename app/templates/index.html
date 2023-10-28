@@ -3,43 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
     <title>Disease Prediction</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<body class="d-flex flex-column vh-100 mt-5">
+<body id="page-top">
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#page-top">Home</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" 
+            aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Predict</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Prevention is better than cure.</h2>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Empowering Health through AI: Predicting Diseases with 
+                        Precision based on apparent symptoms 🌐🤖</h2>
+                    <a class="btn btn-primary" href="#about">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="about-section text-center" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="text-white mb-4">How to get started</h2>
+                    <p class="text-white-50">
+                        Choose from the symptoms below those that most describe your discomfort.
+                    </p>
+                </div>
+            </div>
+            <img class="img-fluid" src="{{url_for('static', filename='img/med-logo.png')}}" alt="logo" id="logo"/>
+        </div>
+    </section>
     <h1>Disease Prediction</h1>
 
     <form method="post" action="{{ url_for('index') }}">
-        <div class="row">
-            {% for symptom in symptoms %}
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <img src="{{ url_for('static', filename='your_image_file.jpg') }}" class="card-img-top" 
-                        alt="{{ symptom }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ symptom }}</h5>
-                            <p class="card-text">
-                                This is the description
-                            </p>
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" name="{{ symptom }}" value="yes">
-                                Yes
-                            </label>
-                        </div>
+    <div class="row">
+        {% for symptom in symptoms %}
+            <div class="col-md-4">
+                <div class="card mb-3" data-symptom="{{ symptom }}">
+                    <img src="{{ url_for('static', filename='img/' + symptom_images.get(symptom, 
+                    symptom_images['default'])) }}" class="card-img-top symptom-image" alt="{{ symptom }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ symptom }}</h5>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
-        <button type="submit" class="btn btn-primary">Predict</button>
-    </form>
-    {% if result %}
-        <h2>Predicted Disease: {{ result }}</h2>
-    {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <input type="hidden" name="selected_symptoms" id="selectedSymptoms" value="">
+    <button type="submit" class="btn btn-primary">Predict</button>
+</form>
+{% if result %}
+    <h2>Predicted Disease: {{ result }}</h2>
+{% endif %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
-    crossorigin="anonymous"></script>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
 </body>
 </html>
