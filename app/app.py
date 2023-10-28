@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import joblib
 import numpy as np
+import json
 
 app = Flask(__name__)
 
@@ -197,9 +198,13 @@ def index():
         # Predict the disease
         predicted_disease = predict_disease(svm_model, user_inputs, label_encoder)
 
-        return render_template('index.html', symptoms=symptoms, result=predicted_disease, symptom_images=symptom_images)
+        return json.dumps({'result': predicted_disease})
 
     return render_template('index.html', symptoms=symptoms, result=None, symptom_images=symptom_images)
+
+@app.route('/result/<result>')
+def result(result):
+    return render_template('result.html', result=result)
 
 if __name__ == '__main__':
     app.run(debug=True)

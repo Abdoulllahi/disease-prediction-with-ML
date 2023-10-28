@@ -79,3 +79,27 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     });
 
+// static/js/scripts.js
+document.addEventListener("DOMContentLoaded", function () {
+    var form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Serialize form data
+        var formData = new FormData(form);
+
+        // Send an asynchronous POST request to the server
+        fetch('/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Show the result in the modal
+            showResultModal(data.result);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+

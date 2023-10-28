@@ -12969,6 +12969,17 @@ body {
     background-color: #40916C;
 }
 
+#predictButton {
+    position: sticky;
+    bottom: 20px;
+    z-index: 1000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 
 .projects-section {
     padding: 10rem 0;
