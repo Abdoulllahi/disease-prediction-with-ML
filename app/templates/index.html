@@ -58,7 +58,6 @@
             <img class="img-fluid" src="{{url_for('static', filename='img/med-logo.png')}}" alt="logo" id="logo"/>
         </div>
     </section>
-    <h1>Disease Prediction</h1>
 
     <form method="post" action="{{ url_for('index') }}">
     <div class="row">
@@ -66,9 +65,9 @@
             <div class="col-md-4">
                 <div class="card mb-3" data-symptom="{{ symptom }}">
                     <img src="{{ url_for('static', filename='img/' + symptom_images.get(symptom, 
-                    symptom_images['default'])) }}" class="card-img-top symptom-image" alt="{{ symptom }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ symptom }}</h5>
+                    symptom_images['default'])) }}" class="card-img-top symptom-image mx-auto" alt="{{ symptom }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ symptom.replace('_', ' ').title() }}</h5>
                     </div>
                 </div>
             </div>
