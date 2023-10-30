@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.md
+*.ipynb
+data/others
+disease-prediction_files
+.venv
